@@ -1,0 +1,44 @@
+#include <stdio.h> 
+#include <string.h> 
+#define DIM 100 
+typedef struct 
+{ 
+int varsta; 
+char nume[20]; 
+}student; 
+student tab[DIM]; 
+int n; 
+void cit_sir (char *sir) 
+{ 
+do 
+{ 
+ 		gets (sir); 
+}while (strlen (sir) == 0); 
+} 
+int main (void) 
+{ 
+FILE *f; 
+int i; 
+printf ("Cate inregistrari doriti? "); 
+scanf ("%d", &n); 
+for (i = 0; i < n; i++) 
+{ 
+ 		printf ("Numele persoanei %d: ", i + 1); 
+ 		//cit_sir (tab[i].nume); 
+gets (tab[i].nume);
+ 
+ 		printf ("Varsta persoanei %d: ", i + 1); 
+ 		scanf ("%d", &tab[i].varsta); 
+} 
+/*se creează un fişier binar*/ 
+f = fopen ("ex_binar.bin", "wb"); 
+if (f == NULL) 
+ 		printf ("Fisierul nu se poate crea!"); 
+else 
+{ 
+/*TOATE inregistrarile sunt scrise printr-o apelare*/ 
+ 		fwrite (tab, sizeof (student), n, f); 
+ 		fclose (f); 
+} 
+return 0; 
+}
