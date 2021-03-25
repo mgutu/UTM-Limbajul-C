@@ -1,0 +1,28 @@
+void eliminare(int n){
+    FILE *f1;
+    FILE *f2;
+    f1=fopen("muzeu1.bin","rb");
+    f2=fopen("muzeu2.bin","wb");
+    int nr=0;
+    printf("Introduceti numarul muzeului pe care doriti sa il eliminati: ");
+    fflush(stdin);
+    scanf("%d",&nr); 
+    muzeu mag;
+    for(int i=1;i<=n;i++){
+        fread(&mag,sizeof(mag),1,f1);
+        if(i!=nr){
+        fwrite(&mag,sizeof(mag),1,f2);
+        }
+    }
+    fclose(f2);
+    fclose(f1);
+    f2=fopen("muzeu2.bin","rb");
+    f1=fopen("muzeu.bin","wb");
+    while(fread(&mag,sizeof(mag),1,f2)){
+        fwrite(&mag,sizeof(mag),1,f1);
+    }
+    n--;
+    fclose(f2);
+    fclose(f1); 
+    printf("\n***Eliminat cu succes***\n"); 
+}
