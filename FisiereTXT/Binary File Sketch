@@ -5,8 +5,8 @@ Sarcina: Pentru fișierele binare cu elemente de tip structură (conform variant
 2. Afișarea elementelor fișierului binar la ecran. 
 3. Adăugarea unei structuri noi la sfârșit de fișier. 
 4. Modificarea unei structuri a fișierului. 
-5. Căutarea după un câmp al structurii în fișier. 
-6. Sortarea structurilor fișierului după un careva câmp. 
+5. Căutarea după un câmp al structurii în fișier(denumire). 
+6. Sortarea structurilor fișierului după un careva câmp(crescător - pret). 
 7. Eliminarea unei structuri din fișier. 
 8. Ștergerea fișierului de pe disc (la dorință) 
 0. Ieșire din program. 
