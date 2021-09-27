@@ -1,0 +1,82 @@
+Instrucțiunea de Ramificare Multiplă SWITCH
+Exemplu 1
+Un exemplu de utilizare a instrucțiunii SWITCH atunci când avem un interval prestabilit de valori.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int main()
+{
+    srand(time(0));
+    int num = rand() % 100 + 1;
+
+		switch (num)
+		{
+		case 1 ... 10:
+			printf("%d in range 1 to 10\n", num);
+			break;
+		case 19 ... 60:
+			printf("%d in range 19 to 60\n", num);
+			break;
+		default:
+			printf("%d not in range\n", num);
+			break;
+		}
+
+	return 0;
+}
+
+Reține: 
+Corect  -   case 1 ... 5:  // cele trei puncta sunt precedate și succedate de câte un spațiu
+Greșit -    case 1...5: 
+
+Exemplu 2
+
+#include <stdio.h>
+int main()
+{
+    int num;
+    printf("Input a one-digit number\n");
+    scanf("%d",&num);
+		switch (num)
+		{
+		case 0: case 2: case 4: case 6: case 8:
+			printf("%d - an even number\n", num);
+			break;
+		case 1: case 3: case 5: case 7: case 9:
+			printf("%d - an odd number\n", num);
+			break;
+		default:
+			printf("%d not a one-digit number \n", num);
+			break;
+		}
+
+	return 0;
+}
+
+Exemplu 3
+
+#include <stdio.h>
+int main()
+{
+   
+    char ch;
+    printf("Input a character\n");
+    scanf("%c",&ch);
+		switch (ch)
+		{
+		case 'A' ... 'Z':
+			printf("%c in range A to Z\n", ch);
+			printf("%d in range %d to %d\n", ch, 'A', 'Z');
+			break;
+		case 'a' ... 'z':
+			printf("%c in range 'a' to 'z'\n", ch);
+			printf("%d in range %d to %d\n", ch, 'a', 'z');
+			break;
+		default:
+			printf("%d not in range\n", ch);
+			break;
+		}
+
+	return 0;
+}
