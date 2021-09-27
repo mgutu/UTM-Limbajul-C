@@ -39,7 +39,9 @@ Output 3: ?
  
 srand()
 Funcția srand() stabilește punctul de plecare pentru producerea unei serii de numere întregi pseudo-aleatorii, prin urmare, funcția srand() setează generatorul la un punct de plecare diferit.
-Notă: Generatorul de numere pseudo-aleatorii ar trebui să fie inițializat o singură dată, înainte de orice apeluri către rand() și începutul programului. Practica standard este de a folosi rezultatul unui apel către srand(time (0)) ca inițializare. Cu toate acestea, time() returnează o valoare time_t care variază de fiecare dată și, prin urmare, numărul pseudo-aleator variază pentru fiecare apel de program.
+Notă: Generatorul de numere pseudo-aleatorii ar trebui să fie inițializat o singură dată, înainte de orice apeluri către rand() și începutul programului. 
+Practica standard este de a folosi rezultatul unui apel către srand(time (0)) ca inițializare. 
+Cu toate acestea, time() returnează o valoare time_t care variază de fiecare dată și, prin urmare, numărul pseudo-aleator variază pentru fiecare apel de program.
 
 Exemplu 3
 #include <stdio.h>
@@ -64,7 +66,8 @@ Generarea numerelor aleatorii între un interval predefinit
 Input : Lower = 50,
         Upper = 100
         
-Deoarece C nu are o funcție încorporată pentru generarea unui număr în interval, dar are o funcție rand care generează un număr aleator de la 0 la RAND_MAX. Cu ajutorul rand () se poate genera un număr în interval ca num = (rand() % (upper – lower + 1)) + lower
+Deoarece C nu are o funcție încorporată pentru generarea unui număr în interval, dar are o funcție rand care generează un număr aleator de la 0 la RAND_MAX. 
+Cu ajutorul rand () se poate genera un număr în interval ca num = (rand() % (upper – lower + 1)) + lower
 
 Exemplu 4
 #include <stdio.h>
