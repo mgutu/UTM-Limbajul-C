@@ -1,0 +1,183 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+void meniu(int *a, int n);
+void alocare (int *a, int n);
+void citire(int *a, int n);
+void afisare(int *a, int n);
+void random_arr(int *a, int n);
+void sortare(int *a, int n);
+void sortare_arr(int *a, int n);
+void freemem(int *a, int n);
+void bubbleSort(int *a, int n);
+void mergeSort(int *a, int low, int high);
+void merging(int *a, int low, int mid, int high);
+int maxim(int *a, int n);
+
+int main()
+{
+   int *arr = NULL, n;
+
+   printf("Introduceti dimensiunile tabloului:\n");
+   scanf("%i", &n);
+
+   meniu(arr, n);
+ return 0;
+}
+
+void meniu(int *a, int n){
+    int option, max, count = 0;
+    printf("\nLista de optiuni:\n"
+          "1. Alocarea dinamica a memoriei\n"
+          "2. Introducerea elementelor tabloului de la tastatura\n"
+          "3. Completarea tabloului cu valori aleatorii\n"
+          "4. Sortarea elementelor tabloului\n"
+          "5. Afisarea elementelor tabloului la ecran\n"
+          "0. Iesire din program\n");
+   printf("Selectati si introduceti nr optiunii dorite: ");
+   scanf("%i", &option);
+
+  switch (option)
+    {
+      case 0:
+         printf("Se efectueaza iesirea din program...");
+         freemem(a, n);
+         exit(1);
+         break;
+      case 1:
+         alocare(a, n);
+         break;
+      case 2:
+         citire(a, n); //tastatura
+         break;
+      case 3:
+         random_arr(a, n);  //aleatoriu
+         break;
+      case 4:
+        printf("Valoarea maxima este:%i", maxim(a,n));
+         max=maxim(a,n);
+         for(int i=0;i<n;i++){
+               if(a[i]==max)
+                count++;
+            }
+          if(count>1){
+            bubbleSort(a,n);
+          }
+          else {
+            mergeSort(a,0,n-1);
+            printf("\n--------Tabloul a fost sortat prin sortarea merge.----------\n");
+          }
+          afisare(a,n);
+          meniu(a,n);
+         break;
+      case 5:
+         afisare(a, n);
+         break;
+      default:
+         {printf("\n-----------Nu exista optiune cu asa numar!-----------\n");
+         meniu(a, n);
+         }
+      }
+    }
+void alocare(int *a, int n){
+    a =  malloc (n * sizeof(int ));
+    if (a == NULL){
+        printf("-----------Eroare. Nu s-a alocat memorie.-------------\n");
+        exit(1);
+    } else {
+        printf("-------------Succes.--------------\n");
+        meniu(a, n);
+    }
+}
+void citire(int *a, int n){
+    int i;
+    for(i = 0; i < n; i++)
+    scanf("%i", &a[i]);
+    meniu(a, n);
+}
+int maxim(int *a, int n){
+    int max;
+    max=a[0];
+    for(int i=0; i<n;i++){
+        if(max<a[i])
+            max=a[i];
+    }
+
+return max;
+}
+
+void afisare(int *a, int n){
+        int i;
+        for(i = 0; i < n; i++)
+        {
+        printf("%i\t", a[i]);
+        }
+        meniu(a, n);
+}
+
+void random_arr(int *a, int n){
+   srand(time(NULL));
+   for (int i = 0; i < n; i++)
+   {
+         a[i] = rand() % 100;
+   }
+   printf("--------Tabloul a fost completat cu valori aleatorii.----------\n");
+   meniu(a, n);
+}
+void bubbleSort(int *a, int n){
+bool sortat;
+int m = n;
+do
+{
+ sortat = true;
+ int p = m;
+ for(int i = 0 ; i < p - 1 ; i ++)
+ if(a[i] > a[i+1])
+ {
+ int aux = a[i];
+ a[i] = a[i+1];
+ a[i+1] = aux;
+ sortat = false;
+ m = i + 1;
+ }
+}
+while(!sortat);
+    printf("\n--------Tabloul a fost sortat prin bubbleSort.----------\n");
+}
+
+void merging(int *a, int low, int mid, int high) {
+   int l1, l2, i, b[high];
+
+   for(l1 = low, l2 = mid + 1, i = low; l1 <= mid && l2 <= high; i++) {
+      if(a[l1] <= a[l2])
+         b[i] = a[l1++];
+      else
+         b[i] = a[l2++];
+   }
+
+   while(l1 <= mid)
+      b[i++] = a[l1++];
+
+   while(l2 <= high)
+      b[i++] = a[l2++];
+
+   for(i = low; i <= high; i++)
+      a[i] = b[i];
+}
+
+void mergeSort(int *a, int low, int high) {
+   int mid;
+
+   if(low < high) {
+      mid = (low + high) / 2;
+      mergeSort(a, low, mid);
+      mergeSort(a, mid+1, high);
+      merging(a, low, mid, high);
+   } 
+}
+
+void freemem(int *a, int n){
+        free(a);
+}
