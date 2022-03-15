@@ -1,0 +1,106 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+typedef struct{
+    char nume[10];
+    char prenume[10];
+    struct {
+        int mate, rom, eng;
+    } nota;
+    
+} info;
+
+void citireFile(info *pt, int n, FILE *fin);
+void afisare(info *pt, int n);
+void afisareFile(info * pt, int n, FILE *fout);
+void add(info *pt, int n, FILE *fout);
+void modificare(info * pt, int n);
+void bublleChar(info * pt, int n);
+
+int main()
+{
+    int n;
+    printf("n="); scanf("%d", &n);
+    
+    info * pt;
+    pt = (info *) malloc (n*sizeof(info));
+    
+    FILE *fin, *fout;
+    fin = fopen("input.txt", "r");
+    if (!fin) return 1;
+    citireFile(pt, n, fin);
+    printf("----------------Date citite din fisier------------\n");
+    afisare(pt, n);
+    fclose(fin);
+    
+    afisareFile(pt, n, fout);
+
+    fout = fopen("output.txt","a");
+    if(!fout) return 1;
+    n++;
+    pt = (info *)realloc(pt, sizeof(info)*n);
+    add(pt, n, fout);
+    fclose(fout);
+    // modificare date a structurii
+    modificare(pt, n);
+    afisareFile(pt, n, fout);
+    // sortarea structurii dupa un camp char[]
+    bublleChar(pt, n);
+    afisareFile(pt, n, fout);
+
+    free(pt);
+    return 0;
+}
+void citireFile(info *pt, int n, FILE *fin){
+    int i = 0;
+    while (!feof(fin)){
+        fscanf(fin, "%s\n%s\n%d\n%d\n%d\n", (pt+i)->nume, (pt+i)->prenume, &(pt+i)->nota.mate, &(pt+i)->nota.rom, &(pt+i)->nota.eng);
+        ++i;
+    }
+    
+}
+
+void afisare(info *pt, int n){
+    for(int i = 0; i < n; ++i){
+        printf("%s\n%s\n%d\n%d\n%d\n", (pt+i)->nume, (pt+i)->prenume, (pt+i)->nota.mate, (pt+i)->nota.rom, (pt+i)->nota.eng);
+    }
+}
+
+void afisareFile(info * pt, int n, FILE *fout){
+        
+    fout = fopen("output.txt","w");
+    if(!fout) exit(1);
+    for (int i = 0; i < n; i++){
+        fprintf(fout, "%10s%10s%3d%3d%3d\n", (pt+i)->nume, (pt+i)->prenume, (pt+i)->nota.mate, (pt+i)->nota.rom, (pt+i)->nota.eng);
+    }
+    fclose(fout);
+}
+
+void add(info *pt, int n, FILE *fout){
+    scanf("%s\n%s\n%d\n%d\n%d", (pt+n-1)->nume, (pt+n-1)->prenume, &(pt+n-1)->nota.mate, &(pt+n-1)->nota.rom, &(pt+n-1)->nota.eng);
+    fseek(fout, sizeof(info)*(n-1), 2);
+    fprintf(fout, "%10s%10s%3d%3d%3d\n", (pt+n-1)->nume, (pt+n-1)->prenume, (pt+n-1)->nota.mate, (pt+n-1)->nota.rom, (pt+n-1)->nota.eng);
+    
+}
+void modificare(info * pt, int n){
+    for (int i = 0; i<n; i++){
+        if ((pt+i)->nota.mate < 5) (pt+i)->nota.mate = 5;
+    }
+    
+}
+void bublleChar(info * pt, int n){
+    for(int k=0; k<n-1; k++){
+        bool sortat = false;
+        for(int i = 0; i<n-1-k; i++){
+            if (strcmp((pt+i)->nume, (pt+i+1)->nume)>0){
+                info aux = *(pt+i);
+                *(pt+i) = *(pt+i+1);
+                *(pt+i+1) = aux;
+                sortat = true;
+            }
+        }
+        if (sortat==false) break;
+    }
+}
