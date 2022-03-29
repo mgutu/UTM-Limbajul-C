@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+int calcul(char a[100]);
+void random1(int *v, int n);
+void fileWrite(int *v, int n, FILE*pb);
+void med(int sz);
+int main()
+{
+char a[100];
+    FILE *p;
+    p = fopen("lucru.txt", "w");
+    if (!p) return 1;
+    printf("Introduceti textul");
+    fgets(a,100,stdin);
+    fprintf(p,"%s",a);
+    int rez=calcul(a);
+    printf("Numarul de caractere a si b = %i", rez);
+    fclose(p);
+    rename("lucru.txt","binarFile.bin");
+    int*vect=NULL;
+    int n;
+    printf("n="); scanf("%i", &n);
+    vect=(int*) malloc(n*sizeof(int));
+    random1(vect, n);
+    fileWrite(vect, n,p);
+    free(vect);
+    int sz=strlen(a);
+    med(sz);
+    return 0;
+}
+int calcul(char a[100]){
+        int count=0;
+    for(int i=0;i<strlen(a);i++)
+        if(a[i]=='a'||a[i]=='b')
+            count++;
+    return count;
+}
+void random1(int *v, int n){
+    srand(time(NULL));
+    for(int i=0;i<n;i++)
+    v[i]=rand()%50-20;
+    
+}
+void fileWrite(int *v, int n, FILE*pb){
+    pb=fopen("binarFile.bin","ab");
+    for(int i=0;i<n;i++)
+        fwrite(&v[i],sizeof(int), 1, pb);//*(v+i)
+        fclose(pb);
+}
+void med(int sz){
+    FILE *pb;
+    int x=0;
+    pb=fopen("binarFile.bin","rb");
+    fseek(pb,sz,1);
+    int sum=0, num, i=0;
+    while(!feof(pb)){
+        fread(&num,sizeof(int),1, pb);
+        printf("%4d", num);
+        if((i%2==0)&&(num>0)){
+            sum+=num;
+            x++;
+            }
+        i++;
+    }
+    double med1=(double)sum/x;
+    fclose(pb);
+    remove("binarFile.bin");
+    fopen("output.txt","w");
+    fprintf(pb,"media = %f",med1);
+    fclose(pb);
+}
