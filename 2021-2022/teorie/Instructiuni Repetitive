@@ -1,0 +1,158 @@
+Instrucțiunea while
+while execută un bloc de instrucţiuni atâta timp cât o anumită condiţie este adevărată. Forma generală a unui ciclu while este:
+while (expression) {
+  // instructions
+}
+Câtă vreme expression are o valoare nenulă, adică diferită de zero (true = 1, false = 0), instrucţiunile din blocul de după while sunt executate. 
+Expresia este reevaluată după fiecare ciclu. Un astfel de ciclu poate să se execute o dată, de mai multe ori sau niciodată, 
+în funcţie de valoarea la care se evaluează expresia.
+
+
+Exersare
+	Se citesc numere de la tastatură până la apariția lui zero. Să se determine câte dintre numerele citite sunt pare.
+	Nu uitati ca trebuie sa utilizam un coding style adecvat atunci cand scriem sursele.
+https://ocw.cs.pub.ro/courses/programare/coding-style
+#include <stdio.h>
+ 
+int main(void)
+{
+    int nr, count = 0;
+ 
+    scanf("%d", &nr);
+ 
+    while (nr != 0) {
+        if (nr % 2 == 0) {
+	   count++;
+	}
+	scanf("%d", &nr);
+    }
+
+    printf("Sunt %d numere pare", count);
+ 
+    return 0;
+}
+Cerințe:
+	Modificați codul astfel încât să se numere doar numerele impare.
+	Calculați suma tuturor numerelor citite de la tastatură.
+	Calculați media aritmetică doar a numerelor pare citite de la tastatură.
+
+
+
+Instrucțiunea do ... while
+do … while este o instrucţiune repetitivă ce execută un bloc de instrucţiuni atâta timp cât o anumită condiţie este adevărată, 
+expresia/condiția este evaluată după executarea instrucţiunilor, nu înainte. Astfel, blocul va fi executat cel puţin o dată.
+Forma generală a unui ciclu while este:
+do {
+  // instructions
+} while (expression);
+Câtă vreme expression are o valoare nenulă, adică diferită de zero (true = 1, false = 0), instrucţiunile din blocul de după do sunt executate. 
+Expresia este reevaluată după fiecare ciclu. Un astfel de ciclu poate să se execute cel puțin o dată sau de mai multe ori, 
+în funcţie de valoarea la care se evaluează expresia.
+
+
+Exersare
+	Să se scrie un program care să determine suma cifrelor unui număr natural citit de la tastatură.
+	Nu uitati ca trebuie sa utilizam un coding style adecvat atunci cand scriem sursele.
+https://ocw.cs.pub.ro/courses/programare/coding-style
+#include <stdio.h>
+ 
+int main(void)
+{
+    int nr, sum = 0, rest;
+ 
+    scanf("%d", &nr);
+ 
+    do{
+	rest = nr % 10;
+	sum += rest;
+	nr /= 10;     
+    } while (nr != 0);
+
+    printf("Suma cifrelor este %d", sum);
+ 
+    return 0;
+}
+Cerințe:
+	Modificați codul astfel încât să se numere câte cifre are numărul citit de la tastatură.
+	Modificați astfel încât numărul să fie generat random.
+	Calculați media aritmetică a cifrelor numărului generat random.
+
+
+
+
+Instrucțiunea for
+for reprezintă o instrucțiune repetitivă însoțită de o expresie de inițializare, de o condiție/expresie de verificare şi de o expresie de incrementare. 
+for execută un bloc de instrucţiuni atâta timp cât condiţia/expresia este adevărată.
+Forma sa generală este:
+for (expression1; condition; expression2) {
+  // instructions
+}
+Câtă vreme condition are o valoare nenulă, adică diferită de zero (true = 1, false = 0), instrucţiunile din blocul de după for sunt executate. 
+Expresia este reevaluată după fiecare ciclu. Un astfel de ciclu poate să se execute o dată, de mai multe ori sau niciodată, 
+în funcţie de valoarea la care se evaluează expresia.
+Exemplul următor prezintă un ciclu for ce va tipări în consolă cifrele:
+#include <stdio.h>
+
+int main() {
+  short i;
+ 
+  for (i = 0; i < 10 ; i++) {
+    printf("i=%d\n", i);
+  }
+   return 0;
+}
+
+În cazul instrucţiunii for, oricare dintre cele 3 expresii poate lipsi. Lipsa expresiei condiţionale este echivalentă cu o buclă infinită, 
+se repetă executarea lor nelimitat, cum ar fi:
+for ( ; ; ) {
+  /* instrucţiunile de aici sunt intr-o buclă infinită */
+}
+În acest caz, ieşirea din buclă trebuie făcută explicit, cu ajutorul instrucţiunii break.
+Exemplul următor prezintă un ciclu cu funcţionalitate infinită (tipărirea valorii variabilei i):
+#include <stdio.h>
+
+int main() {
+  short i;
+ 
+  for (i = 1;; i++) {
+    printf("i=%d\n", i);
+//pentru a opri ciclul infinit, se va adauga o instructiune if
+//if(i == 10)break; sau
+// for (i = 1; i < 10; i++){}
+  } 
+  return 0;
+}
+Pentru blocuri de o singură instrucţiune (cum este și cazul instrucțiunii executate de for în exemplul de mai sus) nu este nevoie să folosim acolade. 
+Totuși, folosirea acoladelor, chiar și în această situație, este recomandată pentru o depanare mai ușoară și o lizibilitate mai bună a programelor.
+Exersare
+	Primul exercitiu presupune modificarea/adaugarea de instructiuni unui cod pentru a realiza anumite lucruri. 
+  Să se scrie un program care afișează dacă numarul citit de la tastatură este prim, iar în caz contrar să se afișeze divizorii lui.
+	Nu uitati ca trebuie sa utilizam un coding style adecvat atunci cand scriem sursele.
+https://ocw.cs.pub.ro/courses/programare/coding-style 
+#include <stdio.h>
+ 
+int main(void)
+{
+    int nr, i;
+    int prim = 1;
+ 
+    scanf("%d", &nr);
+ 
+    for (i = 2; i < nr; i++) {
+        if (nr % i == 0) {
+	    printf("%d ", i);
+	    prim = 0;
+	}
+    }
+ 
+    if (nr > 1 && prim) {
+        printf("Numarul %d este numar prim", nr);
+    }
+ 
+    return 0;
+}
+Cerințe:
+	Modificați codul astfel încât dacă numarul are divizori, să se calculeze numărul lor.
+	Să se calculeze suma divizorilor numărului dat.
+	Să se modifice programul astfel încât să fie necesară utilizarea instrucțiunii speciale break.
+
