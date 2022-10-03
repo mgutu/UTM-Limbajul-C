@@ -1,0 +1,44 @@
+break
+break, pe lângă utilizarea descrisă la instrucţiunea switch, poate fi folosită pentru a ieşi forţat dintr-o instrucţiune de repetiţie. 
+Secventa următoare este echivalentă cu cele de mai sus:
+i = 0;
+for( ; ; ) {
+  i++;
+  if (i > 10) {
+    break; /* ieşire forţată din bucla */
+  }
+  printf( "i=%d\n", i );
+}
+
+
+continue
+continue forţează terminarea iteraţiei curente a buclei si trecerea la iteraţia următoare. În cazul instrucţiunii for, 
+acest lucru presupune executarea instrucţiunii de incrementare; apoi se evaluează condiţia de continuare a buclei. 
+Exemplul următor demonstrează implementarea unei bucle infinite cu ajutorul instrucţiunii continue:
+for (i = 0; i < 10; ) {
+  if (i == 0) {
+    continue;
+  }
+  i++;
+}
+
+
+return
+return este instrucţiunea de terminare a funcţiei curente. Aceasta poate fi apelată in forma return; 
+în cazul funcţiilor care returnează void şi în forma return result; pentru funcţiile care întorc o valoare.
+
+
+goto
+goto este o instrucţiune de salt a execuţiei. Instrucţiunea primeşte ca parametru o etichetă; 
+următoarea instrucţiune executată după goto este cea de la eticheta dată.
+int main() {
+  goto et;	
+  printf("Asta nu apare la executie\n");
+ 
+et:
+  printf("Asta apare la rulare\n");
+  return 0;
+}
+În majoritatea cazurilor, utilizarea instrucţiunii goto nu este recomandată şi poate fi evitată folosind alte instrucţiuni de control şi funcţii. 
+Programele care folosesc această instrucţiune pentru a sări între secvenţe îndepărtate de cod sunt dificil de depanat şi analizat.
+
