@@ -1,0 +1,149 @@
+/*Se dă un tablou bidimensional a[20][20], cu n linii n coloane. Valoare lui n se va citi de la tastatură. 
+Să se creeze funcții, ce vor fi apelate ulterior din funcție main(), care vor: 
+(1) genera aleatoriu numere ca elemente ale tabloului, fără pointeri; 
+(2) citi numere de la tastatură ca elemente ale tabloului, fără pointeri; 
+(3) calcula suma elementelor de pe diagonala principală și diagonala secundară, calculul facându-se într-un mod obișnuit, fără pointeri; 
+(4)  genera aleatoriu numere ca elemente ale tabloului, folosind doar pointeri; 
+(5) citi numere de la tastatură ca elemente ale tabloului, utilizând doar pointeri; 
+(6) calcula suma elementelor de pe diagonala principală și diagonala secundară, calculul facându-se doar prin pointeri. 
+În funcția main() se va crea un meniu cu instrucțiunea switch care va permite selectare rezolvării problemei cu/fără pointeri. 
+Pentru citirea sau generarea aleatorie a elementelor tabloului, se va crea un alt meniu. */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void input(int n, int a[20][20]);
+void inputPoint(int *n, int (*a)[20]);
+void inputRand(int n, int a[20][20]);
+void inputRandPoint(int *n, int (*a)[20]);
+void output(int n, int a[20][20]);
+void outputPoint(int *n, int (*a)[20]);
+int sumaDiagonale1(int n, int a[20][20]);
+int sumaDiagonale1Point(int *n, int (*a)[20]);
+int sumaDiagonale2(int n, int a[20][20]);
+int sumaDiagonale2Point(int *n, int (*a)[20]);
+
+int main()
+{
+    int n, op, a[20][20];  
+    //op - ajuta la alegerea optiunii dorite din meniu
+    printf("Introduceti dimensiune array: ");
+    scanf("%d", &n);
+    do {
+        printf("\nAlegeti optiunea: \n");
+        printf("1: Fara pointeri \n");
+        printf("2: Cu pointeri \n");
+        scanf("%d", &op);
+    } while ((op != 1) && (op != 2));
+    
+    switch (op){
+        case 1:{ do{
+                    printf("\nAlegeti optiunea: \n");
+                    printf("1: Citire de la tastatura \n");
+                    printf("2: Generare aleatorie \n");
+                    scanf("%d", &op);
+                } while ((op != 1) && (op != 2));
+                switch (op){
+                    case 1: {input(n, a); break;}
+                    case 2: {inputRand(n,a); break;}
+                }
+                output(n, a);
+                int sum1 = sumaDiagonale1(n, a);
+                printf("Suma1: %d\n", sum1);
+                int sum2 = sumaDiagonale2(n, a);
+                printf("Suma2: %d\n", sum2);
+                break;
+        }
+        case 2:{ do {
+                    printf("\nAlegeti optiunea: \n");
+                    printf("1: Citire de la tastatura \n");
+                    printf("2: Generare aleatorie \n");
+                    scanf("%d", &op);
+                } while ((op != 1) && (op != 2));
+                switch (op){
+                    case 1: {inputPoint(&n, a); break;}
+                    case 2: {inputRandPoint(&n,a); break;}
+                }
+                outputPoint(&n, a);
+                int sum1 = sumaDiagonale1Point(&n, a);
+                printf("Suma1Point: %d\n", sum1);
+                int sum2 = sumaDiagonale2Point(&n, a);
+                printf("Suma2Point: %d\n", sum2);
+                break;
+        }
+    }
+    return 0;
+}
+void input(int n, int a[20][20]){
+    printf("Introduceti elemente array:\n");
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < n; j++)
+            scanf("%d", &a[i][j]);
+}
+void inputPoint(int *n, int (*a)[20]){
+    printf("Introduceti elemente array:\n");
+    for(int i = 0; i < *n; i++)
+        for(int j = 0; j < *n; j++)
+            scanf("%d", (*(a+i)+j));
+}
+void inputRand(int n, int a[20][20]){
+    srand(time(NULL));
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < n; j++)
+            a[i][j] = rand()%20;
+}
+void inputRandPoint(int *n, int (*a)[20]){
+    srand(time(NULL));
+    for(int i = 0; i < *n; i++)
+        for(int j = 0; j < *n; j++)
+            *(*(a+i)+j) = rand()%20;
+}
+void output(int n, int a[20][20]){
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            printf("%3d", a[i][j]);
+        }
+        printf("\n");
+    }
+}
+void outputPoint(int *n, int (*a)[20]){
+    for(int i = 0; i < *n; i++){
+        for(int j = 0; j < *n; j++){
+            printf("%3d", *(*(a+i)+j));
+        }
+        printf("\n");
+    }
+}
+int sumaDiagonale1(int n, int a[20][20]){
+    int s = 0;
+    for(int i = 0; i < n; i++){
+        s += a[i][i];
+        s += a[i][n-1-i];
+    }
+    if (n%2 != 0) s -= a[n/2][n/2];
+    return s;
+}
+int sumaDiagonale1Point(int *n, int (*a)[20]){
+    int s = 0;
+    for(int i = 0; i < *n; i++){
+        s += *(*(a+i)+i);
+        s += *(*(a+i)+*n-1-i);
+    }
+    if (*n%2 != 0) s -= *(*(a+*n/2)+*n/2);
+    return s;
+}
+int sumaDiagonale2(int n, int a[20][20]){
+    int s = 0;
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < n; j++)
+            if ((i == j) || (i+j == n-1)) s += a[i][j];
+    return s;
+}
+int sumaDiagonale2Point(int *n, int (*a)[20]){
+    int s = 0;
+    for(int i = 0; i < *n; i++)
+        for(int j = 0; j < *n; j++)
+            if ((i == j) || (i+j == *n-1)) s += *(*(a+i)+j);
+    return s;
+}
