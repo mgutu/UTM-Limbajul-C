@@ -1,0 +1,11 @@
+Se dau 2 tablouri unidimensionale cu n și, respectiv, m elemente. Valorile variabilelor n și m se vor citi de la tastatură. 
+Să se scrie funcții în limbajul C care să: 
+(1) citească numere de la tastatură ca elemente ale tablourilor; 
+(2) genereze aleatoriu numere ca elemente ale tablourilor; 
+(3) afișeze elementele tabloului; 
+(3) creeze un al treilea vector care să conțină elementul maximal dintre elementele primului și celui de al doilea vector aflate pe aceeași poziție; 
+(4) determine elementul maxim dintre două numere; 
+(5) determine elementul maximal din al treilea vector; 
+(6) determine elementul minimal din al treilea vector; 
+(7) să calculeze suma elementelor divizibile cu 5 din toate cele trei tablouri. 
+Problema se va rezolva în mod obișnuit fără pointeri. Dimensiunea primului vector va fi egală cu dimensiunea celui de al doilea.
