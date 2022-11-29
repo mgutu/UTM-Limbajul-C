@@ -1,4 +1,4 @@
-Se dau 2 tablouri unidimensionale cu n și, respectiv, m elemente. Valorile variabilelor n și m se vor citi de la tastatură. 
+/*Se dau 2 tablouri unidimensionale cu n și, respectiv, m elemente. Valorile variabilelor n și m se vor citi de la tastatură. 
 Să se scrie funcții în limbajul C care să: 
 (1) citească numere de la tastatură ca elemente ale tablourilor; 
 (2) genereze aleatoriu numere ca elemente ale tablourilor; 
@@ -8,4 +8,97 @@ Să se scrie funcții în limbajul C care să:
 (5) determine elementul maximal din al treilea vector; 
 (6) determine elementul minimal din al treilea vector; 
 (7) să calculeze suma elementelor divizibile cu 5 din toate cele trei tablouri. 
-Problema se va rezolva în mod obișnuit fără pointeri. Dimensiunea primului vector va fi egală cu dimensiunea celui de al doilea.
+Problema se va rezolva în mod obișnuit fără pointeri. Dimensiunea primului vector va fi egală cu dimensiunea celui de al doilea.*/
+
+Mai jos gasiți rezolvarea problemei prin pointeri:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void input(int *n, int *a);
+void inputRand(int *n, int *a);
+void output(int *n, int *a);
+int max(int *x, int *y);
+void maximal3(int *len3, int *c);
+void minimal3(int *len3, int *c);
+//void creareVector1(int *n, int *len3, int *a, int *b, int *c);
+void creareVector2(int *n, int *len3, int *a, int *b, int *c);
+void divizibil5(int *sum, int *n, int *tab);
+int main()
+{
+    int n, len3, a[20], b[20], c[20];
+    printf("Introducetu dimensiunea: ");
+    scanf("%d",&n);
+    srand(time(0));
+    input(&n, a);
+    printf("\nElemente array 1\n");
+    output(&n, a);
+    inputRand(&n, b);
+    printf("\nElemente array 2\n");
+    output(&n, b);
+    creareVector2(&n, &len3, a, b, c);
+    printf("\nElemente array 3\n");
+    output(&len3, c);
+    maximal3(&len3, c);
+    minimal3(&len3, c);
+    int sum = 0; 
+    divizibil5(&sum, &n, a);
+    divizibil5(&sum, &n, b);
+    divizibil5(&sum, &len3, c);
+    printf("\nSuma div 5: %d", sum);
+    return 0;
+}
+void input(int *n, int *a){
+    printf("Introduceti elem. tab.1\n");
+    for(int i = 0; i < *n; i++)
+        scanf("%d", a+i);
+}
+void inputRand(int *n, int *a){
+    //srand(time(0));
+    for(int i = 0; i < *n; i++)
+        *(a+i) = rand()%20;
+}
+void output(int *n, int *a){
+    for(int i = 0; i < *n; i++)
+        printf("%3d ", *(a+i));
+}
+/*void creareVector1(int *n, int *len3, int *a, int *b, int *c){
+    *len3 = 0;
+    for(int i = 0; i < *n; i++){
+        if (*(a+i) < *(b+i)){
+            *(c+*len3) = *(b+i); 
+            (*len3)++;
+        } else {
+            *(c+*len3) = *(a+i); 
+            (*len3)++; 
+        }
+    }
+}*/
+void creareVector2(int *n, int *len3, int *a, int *b, int *c){
+    *len3 = 0;
+    for(int i = 0; i < *n; i++){
+        *(c+*len3) = max(a+i, b+i);
+        (*len3)++; 
+    }
+}
+int max(int *x, int *y){
+    if (*x < *y) return *y;
+        else return *x;
+}
+void maximal3(int *len3, int *c){
+    int m = *c;
+    for(int i = 1; i < *len3; i++)
+        if (*(c+i) > m) m = *(c+i);
+    printf("\nMax3: %d", m);
+}
+void minimal3(int *len3, int *c){
+    int m = *c;
+    for(int i = 1; i < *len3; i++)
+        if (*(c+i) < m) m = *(c+i);
+    printf("\nMin3: %d", m);
+}
+void divizibil5(int *sum, int *n, int *tab){
+    for(int i = 0; i < *n; i++){
+        if(*(tab+i) % 5 == 0) *sum += *(tab+i);
+    }
+}
