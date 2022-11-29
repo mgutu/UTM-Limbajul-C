@@ -2,10 +2,12 @@
 Să se creeze funcții, ce vor fi apelate ulterior din funcție main(), care vor: 
 (1) genera aleatoriu numere ca elemente ale tabloului, fără pointeri; 
 (2) citi numere de la tastatură ca elemente ale tabloului, fără pointeri; 
-(3) calcula suma elementelor de pe diagonala principală și diagonala secundară, calculul facându-se într-un mod obișnuit, fără pointeri; 
-(4)  genera aleatoriu numere ca elemente ale tabloului, folosind doar pointeri; 
-(5) citi numere de la tastatură ca elemente ale tabloului, utilizând doar pointeri; 
-(6) calcula suma elementelor de pe diagonala principală și diagonala secundară, calculul facându-se doar prin pointeri. 
+(3) afișa elementele tabloului, fără pointeri; 
+(4) calcula suma elementelor de pe diagonala principală și diagonala secundară, calculul facându-se într-un mod obișnuit, fără pointeri; 
+(5)  genera aleatoriu numere ca elemente ale tabloului, folosind doar pointeri; 
+(6) citi numere de la tastatură ca elemente ale tabloului, utilizând doar pointeri;
+(7) afișa elementele tabloului, cu pointeri; 
+(8) calcula suma elementelor de pe diagonala principală și diagonala secundară, calculul facându-se doar prin pointeri. 
 În funcția main() se va crea un meniu cu instrucțiunea switch care va permite selectare rezolvării problemei cu/fără pointeri. 
 Pentru citirea sau generarea aleatorie a elementelor tabloului, se va crea un alt meniu. */
 
