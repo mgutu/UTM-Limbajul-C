@@ -5,7 +5,7 @@ Scopul lucrării: Studierea posibilităţilor şi mijloacelor limbajului C pentr
                  prelucrarea tablourilor 1D & 2D, manipulând datele tablourilor prin elaborarea funcțiilor de către utilizator și 
                  transmiterea datelor către funcții prin pointeri.
 
-Sarcină (cоnform variantelor):
+Sarcina 1:
 
 Elaborați un program C care va crea un meniu recursiv. Acesta trebuie să cuprindă următoarele funcții în C (cu apelare ulterioară ale acestora în funcția main()): 
 1.	Introducerea valorilor tabloului de la tastatură; 
@@ -15,7 +15,7 @@ Elaborați un program C care va crea un meniu recursiv. Acesta trebuie să cupri
 5.	....
 6.	Ieșire din program.
 
-Variante spre rezolvare:
+
 Vectori:
 1.	Se dau două tablouri unidimensionale cu n elemente numere întregi. 
     Să se determine ce valori din primul tablou nu se conține în al doilea.
@@ -33,6 +33,7 @@ Vectori:
 5.	Se dau două tablouri unidimensionale cu n componente cifre binare și, respectiv, m componente cifre octale. 
     Să se calculeze numărele zecimale corespunzătoare numerelor date (binar & octal).
 
+Sarcina 2:
 Matrici: 
 Se dă un tablou bidimensional cu m linii, ce specifică numărul de studenți (m) și n coloane, ce specifică numărul examenelor la diferite discipline. 
 Elementele tabloului reprezintă notele luate de către studenți la examene. Să se scrie funcții în lumbajul C, care vor determina:
@@ -49,6 +50,7 @@ Elementele tabloului reprezintă notele luate de către studenți la examene. S�
 11)	numărul cel mai mare de note insificiente per disciplină examinată;
 12)	procentul calității per disciplină (procentul notelor de 8, 9 și 10 din totalul de note atribuite).
 
+Sarcina 3:
 Funcții recursive:
 	1. Să se calculeze iterativ & recursiv suma elementelor unui șir de la 1 … n: 1+2+3+...+n.
 	2. Să se calculeze iterativ & recursiv suma elementelor următorului șir: 1+1/2+1/3+...+1/n.
@@ -57,6 +59,7 @@ Funcții recursive:
 	5. Să se calculeze iterativ & recursiv suma elementelor următorului șir: ½+2/3+...+n/(n+1).
 	6. Să se calculeze iterativ & recursiv suma elementelor următorului șir: 1+√2+√3+...+√n.
 
+Sarcina 4:
 Scrieți funcții proprii care realizează calculul iterativ, respectiv, recursiv al elementelor unui vector, n<=20, de numere reale, apelându-se ulterior în funcția main(). 
 Datele vectorului vor fi accesate și manipulate prin pointeri. Funcțiile, 16 la număr (8 – iterativ + 8 – recursiv), vor realiza sarcinile ce urmează:
 1.	Citirea elementelor vectorului de la tastatură;
