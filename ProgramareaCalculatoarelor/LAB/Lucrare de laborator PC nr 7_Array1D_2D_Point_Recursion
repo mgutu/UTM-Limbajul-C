@@ -30,8 +30,8 @@ Vectori:
     Să se determine dacă printre elementele tabloului există numere gemene. 
     Două numere naturale se numesc gemene dacă sunt prime și diferența lor este 2. 
     Exemle de numere gemene: (3; 5), (5; 7), (11; 13), (17; 19) etc.
-5.	Se dau două tablouri unidimensionale cu n componente cifre binare și, respectiv, m componente cifre octale. 
-    Să se calculeze numărele zecimale corespunzătoare numerelor date (binar & octal).
+5.	Se dă un tablou unidimensional cu n componente cifre binare. Să se calculeze numărul zecimal corespunzător numărului binar.
+6.      Se dă un tablou unidimensional cu n componente cifre octale. Să se calculeze numărul zecimal corespunzător numărului octal.
 
 Sarcina 2:
 Matrici: 
