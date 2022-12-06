@@ -1,6 +1,9 @@
-Lucrarea de laborator nr. 7.
+--------Lucrarea de laborator nr. 7.--------
+
 Теmа: Prelucrarea tablourilor 1D & 2D în limbajul C, utilizând funcții recursive și pointeri.
-Scopul lucrării: Studierea posibilităţilor şi mijloacelor limbajului C pentru programarea algoritmilor cu structură ramificată şi ciclică la prelucrarea tablourilor 1D & 2D, manipulând datele tablourilor prin elaborarea funcțiilor de către utilizator și transmiterea datelor către funcții prin pointeri.
+Scopul lucrării: Studierea posibilităţilor şi mijloacelor limbajului C pentru programarea algoritmilor cu structură ramificată şi ciclică la 
+                 prelucrarea tablourilor 1D & 2D, manipulând datele tablourilor prin elaborarea funcțiilor de către utilizator și 
+                 transmiterea datelor către funcții prin pointeri.
 
 Sarcină (cоnform variantelor):
 
@@ -14,14 +17,25 @@ Elaborați un program C care va crea un meniu recursiv. Acesta trebuie să cupri
 
 Variante spre rezolvare:
 Vectori:
-1.	Se dau două tablouri unidimensionale cu n elemente numere întregi. Să se determine ce valori din primul tablou nu se conține în al doilea.
-2.	Se dau două tablouri unidimensionale X & Y cu n elemente numere întregi. Tabloul X conține valorile coordonatelor x a unor puncte din sitemul cartezian, iar tabloul Y conține valorile coordonatelor y a acelorași puncte. Să se creeze un al treilea vector care va conține ca voalori distanțele dintre originea sistemului de coordonate O(0,0) și punctele cu coordonatele x și, respectiv, y. Să se afișeze distanța cea mai mare și pozițiile coordonatelor punctului ce formează cea mai mare distanță.
-3.	Se dă un tablou unidimensional cu n componente numere întregi. Să se determine câte subșiruri a câte trei elemente consecutiv formează un șir crescător în acest tablou. P.S. Se va verifica dacă elementul de pe poziția k este mai mare ca elemenentul de pe poziția k-1 și, totodată, mai mic ca elementul ce se află pe poziția k+1.
-4.	Se dă un tablou unidimensional cu n componente numere naturale. Să se determine dacă printre elementele tabloului există numere gemene. Două numere naturale se numesc gemene dacă sunt prime și diferența lor este 2. Exemle de numere gemene: (3; 5), (5; 7), (11; 13), (17; 19) etc.
-5.	Se dau două tablouri unidimensionale cu n componente cifre binare și, respectiv, m componente cifre octale. Să se calculeze numărele zecimale corespunzătoare numerelor date (binar & octal).
+1.	Se dau două tablouri unidimensionale cu n elemente numere întregi. 
+    Să se determine ce valori din primul tablou nu se conține în al doilea.
+2.	Se dau două tablouri unidimensionale X & Y cu n elemente numere întregi. 
+    Tabloul X conține valorile coordonatelor x a unor puncte din sitemul cartezian, iar tabloul Y conține valorile coordonatelor y a acelorași puncte. 
+    Să se creeze un al treilea vector care va conține ca voalori distanțele dintre originea sistemului de coordonate O(0,0) și punctele cu coordonatele x și, respectiv, y. 
+    Să se afișeze distanța cea mai mare și pozițiile coordonatelor punctului ce formează cea mai mare distanță.
+3.	Se dă un tablou unidimensional cu n componente numere întregi. 
+    Să se determine câte subșiruri a câte trei elemente consecutiv formează un șir crescător în acest tablou. 
+    P.S. Se va verifica dacă elementul de pe poziția k este mai mare ca elemenentul de pe poziția k-1 și, totodată, mai mic ca elementul ce se află pe poziția k+1.
+4.	Se dă un tablou unidimensional cu n componente numere naturale. 
+    Să se determine dacă printre elementele tabloului există numere gemene. 
+    Două numere naturale se numesc gemene dacă sunt prime și diferența lor este 2. 
+    Exemle de numere gemene: (3; 5), (5; 7), (11; 13), (17; 19) etc.
+5.	Se dau două tablouri unidimensionale cu n componente cifre binare și, respectiv, m componente cifre octale. 
+    Să se calculeze numărele zecimale corespunzătoare numerelor date (binar & octal).
 
 Matrici: 
-Se dă un tablou bidimensional cu m linii, ce specifică numărul de studenți (m) și n coloane, ce specifică numărul examenelor la diferite discipline. Elementele tabloului reprezintă notele luate de către studenți la examene. Să se scrie funcții în lumbajul C, care vor determina:
+Se dă un tablou bidimensional cu m linii, ce specifică numărul de studenți (m) și n coloane, ce specifică numărul examenelor la diferite discipline. 
+Elementele tabloului reprezintă notele luate de către studenți la examene. Să se scrie funcții în lumbajul C, care vor determina:
 1)	nota medie obținută de toți studenții la toate examenele;
 2)	nota medie obținută de fiecare student la toate examenele;
 3)	nota medie obținută de toți studenții la fiecare disciplină;
@@ -36,5 +50,23 @@ Se dă un tablou bidimensional cu m linii, ce specifică numărul de studenți (
 12)	procentul calității per disciplină (procentul notelor de 8, 9 și 10 din totalul de note atribuite).
 
 Funcții recursive:
+	1. Să se calculeze iterativ & recursiv suma elementelor unui șir de la 1 … n: 1+2+3+...+n.
+	2. Să se calculeze iterativ & recursiv suma elementelor următorului șir: 1+1/2+1/3+...+1/n.
+	3. Să se calculeze iterativ & recursiv suma elementelor următorului șir: ½+1/4+...+1/(2n).
+	4. Să se calculeze iterativ & recursiv suma elementelor următorului șir: 1+1/3+1/5+...+1/(2n-1).
+	5. Să se calculeze iterativ & recursiv suma elementelor următorului șir: ½+2/3+...+n/(n+1).
+	6. Să se calculeze iterativ & recursiv suma elementelor următorului șir: 1+√2+√3+...+√n.
+
+Scrieți funcții proprii care realizează calculul iterativ, respectiv, recursiv al elementelor unui vector, n<=20, de numere reale, apelându-se ulterior în funcția main(). 
+Datele vectorului vor fi accesate și manipulate prin pointeri. Funcțiile, 16 la număr (8 – iterativ + 8 – recursiv), vor realiza sarcinile ce urmează:
+1.	Citirea elementelor vectorului de la tastatură;
+2.	Generarea aleatoriu a elementelor vectorului cu numere din intervalul [-50 … 49];
+3.	Afișează elementele vectorului;
+4.	Calculează produsul elementelor vectorului;
+5.	Calculează suma elementelor positive din vector;
+6.	Calculează produsul elementelor negative din vector;
+7.	Numără elementele negative din vector;
+8.	Calculează media aritmetică a elementelor vectorului.
+
 
 
