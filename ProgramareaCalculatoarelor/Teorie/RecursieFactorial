@@ -1,0 +1,31 @@
+1.1.	Să se calculeze n! în varianta iterativă și cea recursivă, elaborând funcții pentru fiecare dintre ele, ulterior apelându-se în funcția main().
+#include <stdio.h>
+int factorialIterativ(int n);
+int factorialRecursion( int n);
+int main()
+{
+    int n = 3;
+    int f = factorialIterativ(n);
+    printf("fact: %d", f);
+    f = factorialRecursion(n);
+    printf("\nfactRecursion: %d", f);
+
+    return 0;
+}
+/*int factorialRecursion( int n){
+    if (n == 1) return 1;
+       else return n * factorialRecursion(n-1);
+    
+}*/
+int factorialRecursion( int n){
+    int f;
+    if (n == 1) f = 1;
+        else f = n * factorialRecursion(n-1);
+    return f;
+}
+int factorialIterativ(int n){
+    int f = 1;
+    for (int i = 1; i <= n; i++)
+        f *= i;
+   return f; 
+}
