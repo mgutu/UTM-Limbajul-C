@@ -1,0 +1,40 @@
+2.1.	Scrieți funcții proprii care realizează calculul iterativ, respectiv, recursiv al sumei elementelor unui vector, n<=20, de numere reale; citește datele de la tastatură / generează aleatoriu date ca elemente ale tabloului (recursiv/iterativ), apelându-se ulterior în funcția main(). Datele vectorului vor fi accesate și manipulate prin pointeri.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void input(int n, float *arr);
+void inputRand(int n, float *arr);
+void output(int n, float *arr);
+float suma(int n, float *arr);
+int main()
+{
+    float arr[20];
+    int n;
+    printf("n="); scanf("%d", &n);
+    //input(n-1, arr);
+    srand(time(NULL));
+    inputRand(n-1, arr);
+    output(n-1, arr);
+    float s = suma (n-1, arr);
+    printf("\nsuma: %g", s);
+    
+    return 0;
+}
+void input(int n, float *arr){
+    if (n == 0) {scanf("%f", arr);}
+        else {scanf("%f", (arr + n)); input(n-1, arr);}
+}
+void inputRand(int n, float *arr){
+    if (n == 0) {*arr = rand()%10;}
+        else {*(arr+n) = rand()%10; inputRand(n-1, arr);}
+}
+void output(int n, float *arr){
+    if (n == 0) {printf("%g ", *arr);}
+        else {printf("%g ", *(arr + n)); output(n-1, arr);}
+    
+}
+float suma(int n, float *arr){
+    if (n == 0) return *arr;
+        else return *(arr + n) + suma(n-1, arr);
+}
