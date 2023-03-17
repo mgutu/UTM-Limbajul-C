@@ -5,23 +5,22 @@ and place smaller elements to left of pivot and greater elements to right of piv
 int partition (int a[], int start, int end)  
 {  
     int pivot = a[end]; // pivot element  
-    int i = (start - 1);  
-  
-    for (int j = start; j <= end - 1; j++)  
+    int i = start;
+    for (int j = start; j < end; j++)  
     {  
         // If current element is smaller than the pivot  
         if (a[j] < pivot)  
         {  
-            i++; // increment index of smaller element  
             int t = a[i];  
             a[i] = a[j];  
             a[j] = t;  
+            i++;   // increment index of smaller element 
         }  
     }  
-    int t = a[i+1];  
-    a[i+1] = a[end];  
+    int t = a[i];  
+    a[i] = a[end];  
     a[end] = t;  
-    return (i + 1);  
+    return (i);  
 }  
       /* function to implement quick sort */  
 void quick(int a[], int start, int end) 
@@ -43,7 +42,7 @@ void printArr(int a[], int n)
 }  
 int main()  
 {  
-    int a[] = { 24, 9, 29, 14, 19, 27 };  
+    int a[] = { 27, 9, 29, 14, 19, 24 };  
     int n = sizeof(a) / sizeof(a[0]);  
     printf("Before sorting array elements are - \n");  
     printArr(a, n);  
@@ -51,4 +50,4 @@ int main()
     printf("\nAfter sorting array elements are - \n");    
     printArr(a, n);  
     return 0;  
-}  
+}   
