@@ -4,20 +4,27 @@ int a[11] = { 10, 14, 19, 26, 27, 31, 33, 35, 42, 44, 0 };
 int b[10];
 
 void merging(int low, int mid, int high) {
-   int l1, l2, i;
-
-   for(l1 = low, l2 = mid + 1, i = low; l1 <= mid && l2 <= high; i++) {
-      if(a[l1] <= a[l2])
-         b[i] = a[l1++];
-      else
-         b[i] = a[l2++];
+   int d1 = low, d2 = mid + 1, i;
+   for(i = low; d1 <= mid && d2 <= high; i++) {
+     /* if(a[d1] <= a[d2]) {
+         b[i] = a[d1];
+         d1++;
+        } else {
+            b[i] = a[d2];
+            d2++;
+            }*/
+        // o alta versiune pentru if-ul de mai sus
+        if(a[d1] <= a[d2])
+                b[i] = a[d1++];
+            else 
+                b[i] = a[d2++];
    }
    
-   while(l1 <= mid)    
-      b[i++] = a[l1++];
+   while(d1 <= mid)    
+      b[i++] = a[d1++];
 
-   while(l2 <= high)   
-      b[i++] = a[l2++];
+   while(d2 <= high)   
+      b[i++] = a[d2++];
 
    for(i = low; i <= high; i++)
       a[i] = b[i];
@@ -31,9 +38,7 @@ void sort(int low, int high) {
       sort(low, mid);
       sort(mid+1, high);
       merging(low, mid, high);
-   } else { 
-      return;
-   }   
+   }    
 }
 
 int main() { 
