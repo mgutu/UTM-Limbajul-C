@@ -1,25 +1,25 @@
 #include <stdio.h>
 #define max 10
-int a[11] = { 10, 14, 19, 26, 27, 31, 33, 35, 42, 44, 0 };
+int a[10] = { 10, 14, 19, 26, 27, 33, 35, 42, 44, 0 };
 int b[10];
 
 void merging(int low, int mid, int high) {
    int d1 = low, d2 = mid + 1, i;
    for(i = low; d1 <= mid && d2 <= high; i++) {
-     /* if(a[d1] <= a[d2]) {
+   /* if(a[d1] <= a[d2]) {
          b[i] = a[d1];
          d1++;
         } else {
             b[i] = a[d2];
             d2++;
-            }*/
-        // o alta versiune pentru if-ul de mai sus
+       }*/	
+        // o alta versiune pentru if
         if(a[d1] <= a[d2])
                 b[i] = a[d1++];
             else 
                 b[i] = a[d2++];
-   }
-   
+
+   } //End For Loop
    while(d1 <= mid)    
       b[i++] = a[d1++];
 
@@ -28,7 +28,7 @@ void merging(int low, int mid, int high) {
 
    for(i = low; i <= high; i++)
       a[i] = b[i];
-}
+} // End function merging
 
 void sort(int low, int high) {
    int mid;
@@ -45,14 +45,12 @@ int main() {
    int i;
 
    printf("List before sorting\n");
-   
-   for(i = 0; i <= max; i++)
+   for(i = 0; i < max; i++)
       printf("%d ", a[i]);
 
-   sort(0, max);
+   sort(0, max - 1);
 
    printf("\nList after sorting\n");
-   
-   for(i = 0; i <= max; i++)
+   for(i = 0; i < max; i++)
       printf("%d ", a[i]);
 }
