@@ -1,0 +1,49 @@
+Lucrarea de Laborator nr. 5
+
+Tema:   Algoritmi de prelucrare a structurilor, a tablourilor și a fișierelor în limbajul de programare C. 
+Scopul: Programarea algoritmilor de prelucrare a structurilor și a tablourilor de tip structură prin utilizarea funcțiilor, 
+        pointerilor, alocării dinamice a memoriei și manipularea datelor dintr-un fișier textual și binar. 
+Sarcina: 
+        Fiecare student va elabora un program pentru sarcina primită. 
+        Transmiterea și prelucrarea datelor tabloului se va face doar cu ajutorul pointerilor, memoriapentru tabloul de structuri se va aloca dinamic. 
+        După fiecare prelucrare a datelor din tabloul de structuri, se va afișa rezultatele la ecran. 
+
+Pentru tabloul unidimensional dat cu elemente de tip structură (conform variantelor) să se scrie funcții pentru fiecare dintre următoarele manipulări a datelor: 
+
+1.	Introducerea elementelor tabloului de la tastatură. 
+2.	Afișarea elementelor tabloului într-un fișier textual. 
+3.	Afișarea elementelor tabloului într-un fișier binar.
+4.	Sortarea în ordinea inversă lexicografiei a datelor din tablou după primul câmp de tip string, 
+    utilizând o tehica de sotare la alegere și înscrierea datelor sortate într-un fișier textual.
+5.	Sortarea în creștere a datelor din tablou după un câmp de tip întreg, 
+    utilizând o tehica de sotare la alegere și înscrierea datelor sortate într-un fișier binar.
+6.	Afișarea în consolă a conținutului fișierului textual creat cu datele sortate.
+7.	Afișarea în consolă a conținutului fișierului binar creat cu datele sortate.
+
+
+Variante pentru structuri: 
+1.	Structura Computer cu câmpurile: modelul, procesorul, memoria, viteza, prețul. 
+2.	Structura Canal TV cu câmpurile: denumirea, țara, telefonul, genul, ratingul. 
+3.	Structura Biblioteca cu câmpurile: denumirea, adresa, telefonul, numărul de săli, numărul de cărți. 
+4.	Structura Imobil cu câmpurile: proprietarul, tipul, adresa, suprafața, costul. 
+5.	Structura Capitală cu câmpurile: denumirea, țară, populația, suprafața, primarul. 
+6.	Structura Supermarket cu câmpurile: denumirea, adresa, telefonul, orele de lucru, volumul vânzărilor. 
+7.	Structura Liceu cu câmpurile: denumirea, adresa, telefonul, numărul de profesori, numărul de elevi. 
+8.	Structura Automobil cu câmpurile: marcă, anul producerii, tip combustibil, tip caroserie, capacitate motor, culoare. 
+9.	Structura Telefon cu câmpurile: model, sistem de operare, memorie RAM, memorie încorporată, diagonala display, preț. 
+10.	Structura Parfumerie cu câmpurile: denumirea, tipul parfumului(parfum, apă de toaletă, apă de colonie, testere), producător, sex (pentru bărbați, pentru femei), preț. 
+11.	Structura Muzeu cu câmpurile: denumirea, adresa, telefonul, numărul de exponate, prețul biletului.
+12.	Structura Carte cu câmpurile: autorul, denumirea, anul ediției, numărul de pagini, tirajul. 
+13.	Structura Film cu câmpurile: denumirea, țara, regizorul, genul filmului, anul. 
+14.	Structura Hotel cu câmpurile: denumirea, adresa, telefonul, categoria, numărul de locuri. 
+15.	Structura Cinematograf cu câmpurile: denumirea, adresa, telefonul, numărul de locuri, prețul biletelor. 
+16.	Structura Marfă cu câmpurile: denumirea, țara, producătorul, articolul, prețul. 
+17.	Structura Automobil cu câmpurile: modelul, țara, data fabricării, puterea motorului, costul. 
+18.	Structura Disciplină cu câmpurile: denumirea, anul, facultatea, departamentul, numărul de ore. 
+19.	Structura Tablete cu câmpurile: tip(tabletă, carte electronică, tabletă grafică), producător, dimensiune ecran, sistem de operare, număr de nuclee, preț. 
+20.	Structura Casă cu câmpurile: adresa, telefonul, suprafața, numărul de camere, costul. 
+21.	Structura Stat cu câmpurile: denumirea, capitala, suprafața, populația, produsul intern brut. 
+22.	Structura Aviarută cu câmpurile: numărul, destinație, ora plecării, ora sosirii, prețul biletului. 
+23.	Structura Farmacie cu câmpurile: denumirea, adresa, telefonul, orele de lucru, volumul de medicamente. 
+24.	Structura Restaurant cu câmpurile: denumirea, adresa, telefonul, categoria, numărul de locuri, specializarea. 
+25.	Structura Universitate cu câmpurile: denumirea, adresa, telefonul, numărul de facultăți, numărul de studenți. 
