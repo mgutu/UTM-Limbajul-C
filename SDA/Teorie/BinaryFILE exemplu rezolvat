@@ -1,0 +1,413 @@
+Tema: Algoritmi de prelucrare a fișierelor binare 
+Scopul: Programarea algoritmilor de prelucrare a fișierelor binare prin utilizarea structurilor, funcțiilor, pointerilor, alocării dinamice a memoriei în limbajul C. 
+Sarcina: Pentru fișierele binare cu elemente de tip structură (conform variantelor) să se afișeze la ecran următorul meniu de opțiuni: 
+1. Crearea unui fișier binar nou, introducerea câmpurilor structurilor de la tastatură și înscrierea lor în acest fișier. 
+2. Afișarea elementelor fișierului binar la ecran. 
+3. Adăugarea unei structuri noi la sfârșit de fișier. 
+4. Modificarea unei structuri a fișierului. 
+5. Căutarea după un câmp al structurii în fișier. 
+6. Sortarea structurilor fișierului după un careva câmp. 
+7. Eliminarea unei structuri din fișier. 
+8. Ștergerea fișierului de pe disc (la dorință) 
+0. Ieșire din program. 
+Să se elaboreze funcțiile pentru implementarea opțiunilor meniului. 
+
+Program C: 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct{ 
+    char denumirea[50]; 
+    char adresa[50]; 
+    char telefon[10]; 
+    int exponate; 
+    float price; 
+    
+}muzeu; 
+void aloc_mem(muzeu **arr,int n)
+{ 
+    *arr=(muzeu*)malloc(n*sizeof(muzeu)); 
+} 
+
+muzeu* real_mem(muzeu* arr, int n)
+{ 
+    arr = (muzeu *)realloc(arr, n); 
+    return arr; } 
+    
+void scrie_muzeu(muzeu *arr,int n){ 
+    for(int i=0;i< n; i++){ 
+        printf("Numarul muzeului:%d\n",i+1);
+        printf("Denumirea:");
+        scanf("%s",arr[i].denumirea);
+        fflush(stdin);
+        printf("Adresa: ");
+        scanf("%s",arr[i].adresa);
+        fflush(stdin);
+        printf("Telefonul: ");
+        scanf("%s", arr[i].telefon);
+        fflush(stdin);
+        printf("Numarul de exponate: ");
+        scanf("%d", &arr[i].exponate);
+        fflush(stdin);
+        printf("Pretul: ");
+        scanf("%f", &arr[i].price);
+        printf("\n"); 
+        fflush(stdin);
+}
+ return;
+}
+
+void afisare_muzeu(muzeu *arr,int n)
+{
+    for(int i=0;i<n;i++){
+        printf("Numarul: %d\n ",i+1);
+        printf("Denumirea: %s\n",arr[i].denumirea);
+        printf("Adresa: %s\n",arr[i].adresa);
+        printf("Numarul de telefon: %s\n",arr[i].telefon);
+        printf("Numarul de exponate: %d\n",arr[i].exponate);
+        printf("Pretul biletului: %.2f\n",arr[i].price);
+    }
+}
+
+//adaugare
+void add_prod(muzeu** arr, int n)
+{
+    *arr = real_mem(*arr, n); 
+    fflush(stdin);
+    printf("Denumire: ");
+    scanf("%s",(*arr)[n-1].denumirea);
+    printf("Adresa: ");
+    scanf("%s", &(*arr)[n-1].adresa);
+    fflush(stdin);
+    printf("Telefonul: ");
+    scanf("%s", &(*arr)[n-1].telefon);
+    fflush(stdin);
+    printf("Numarul de locuri: ");
+    scanf("%d", &(*arr)[n-1].exponate);
+    fflush(stdin);
+    printf("Pretul: ");
+    scanf("%f", &(*arr)[n-1].price);
+    printf("\n");
+}
+
+//modificare
+void modificare(muzeu *arr,int n)
+{
+    int t;
+ 
+    fflush(stdin);
+    printf("Denumirea:");
+    scanf("%s",arr[t-1].denumirea);
+    fflush(stdin);
+    printf("Adresa: ");
+    scanf("%s",arr[t-1].adresa);
+    fflush(stdin);
+    printf("Telefonul: ");
+    scanf("%s",arr[t-1].telefon);
+    fflush(stdin);
+    printf("Numarul de exponate: ");
+    scanf("%d",&arr[t-1].exponate);
+    fflush(stdin);
+    printf("Pretul: ");
+    scanf("%f", &arr[t-1].price);
+    printf("\n");
+    fflush(stdin); 
+}
+
+//cautare
+void cautare(muzeu *arr,int n)
+{
+    char caut[70]; int found = 0;
+    int aleg2;
+    int i;
+    printf("Alegeti ce doriti sa cautati\n");
+    printf("1.Cautarea numelui\n");
+    printf("2.Cautarea adresei\n");
+    printf("3.Cautarea numarului de telefon\n");
+    printf("Alegeti optiunea:");
+    scanf("%d",&aleg2);
+    printf("\n***************************************\n");
+    switch(aleg2){
+    case 1:
+        printf("Dati denumirea cautata: ");
+        scanf("%s",&caut);
+        for( i = 0; i < n; i++){
+            if (strcmp(caut,arr[i].denumirea)==0){
+            printf("Denumirea cautata a fost gasita %s in structura %d \n",arr[i].denumirea,i+1); 
+            }
+            else{ printf("Nu a fost gasit nimic\n");
+            }
+        } 
+    break;
+    
+    case 2:
+        printf("Dati Adresa cautata: ");
+        scanf("%s",&caut);
+        for( i = 0; i < n; i++){
+            if (strcmp(caut,arr[i].adresa)==0){
+            printf("Adresa cautata a fost gasit\n"); 
+            }
+            else{ printf("Nu a fost gasit nimic\n");
+            }
+        } 
+    break;
+ 
+    case 3:
+        printf("Dati telefonul cautat: ");
+        scanf("%s",&caut);
+        for( i = 0; i < n; i++){ 
+            if (strcmp(caut,arr[i].telefon)==0){
+                printf("Nr de telefon cautat a fost gasit\n"); 
+            }
+            else{
+                printf("Nu a fost gasit nimic\n");
+            } 
+        } 
+    break;
+    default: 
+        printf("Nu exista asa optiune");
+    break; 
+    }
+}
+
+//sortarea dupa pret si exponate
+void sortare(muzeu **arr,int n,int op){
+    muzeu temp;
+    switch(op){
+        case 1:
+            for(int i = 0; i < n-1; i++){
+                for(int j = i+1; j < n; j++){
+                    if((*arr)[i].exponate > (*arr)[j].exponate){
+                        temp = (*arr)[i];
+                        (*arr)[i] = (*arr)[j];
+                        (*arr)[j] = temp;
+                    }
+                }
+            }
+        break;
+        
+        case 2:
+            for(int i = 0; i < n-1; i++){
+                for(int j = i+1; j < n; j++){
+                    if((*arr)[i].price > (*arr)[j].price){
+                        temp = (*arr)[i];
+                        (*arr)[i] = (*arr)[j];
+                        (*arr)[j] = temp;
+                    }
+                }
+            }
+        break;
+        default:
+            printf("Optiune necunoscuta"); 
+        break;
+    }
+}
+
+void dell(muzeu **arr,int n,int index){
+    for (int i = index; i < n; i++){
+        (*arr)[i] = (*arr)[i+1];
+    }
+    *arr = real_mem(*arr, n);
+}
+//meniul
+void meniu(muzeu *arr,int n){
+    int aleg = 0,mem=0,op;
+    int complet=0,modific,t,index;
+ 
+    printf("--------------------------\n");
+    printf(" Meniul \n");
+ 
+    printf("--------------------------\n");
+do{
+        printf("\n1. Alocarea dinamica a memoriei pentru tabloul de structuri.");
+        printf("\n2. Introducerea elementelor de la tastatura.");
+        printf("\n3. Afisarea elementelor tabloului la ecran");
+        printf("\n4. Adaugarea unui element nou la sfarsit..");
+        printf("\n5. Modificarea elementelor tabloului.");
+        printf("\n6. Cautarea elementului tabloului");
+        printf("\n7. Sortarea tabloului.");
+        printf("\n8. Eliminarea elementului din tablou.");
+        printf("\n9. Eliberarea memoriei alocate.");
+        printf("\n0. Iesire din program.");
+        printf("\n\n\nAlgeti optiunea: ");
+        scanf("%d", &aleg);
+        printf("--------------------------\n");
+    switch(aleg){
+        case 1:
+        //alocarea dinamica a memoriei
+            printf("Introduceti numarul de muzee:");
+            scanf("%d",&n);
+            if(n <= 0) {
+                printf("Introduceti un numar mai mare ca 0.\nIntrodu numarul:");
+                scanf("%d",&n);
+            }
+            aloc_mem(&arr,n);
+            if (arr==NULL){
+                printf("Eroare de alocare a memoriei!\n");
+            }
+            else{
+                printf("Memoria sa alocat cu succes\n");
+            }
+            mem=1;
+            printf("\n\n--------------------------\n");
+        break;
+        //introducerea datelor in structura
+        case 2:
+        if(mem==1){
+            printf("Puteti introduce datele despre muzeu:\n");
+            scrie_muzeu(arr,n);
+            complet=1;
+            printf("--------------------------\n");
+        }
+        else{
+            system("cls");
+            printf("Nu ati alocat memorie pentru tablou\nAccesati punctul '1' pentru a efectua introducerea in tablou\n\n");
+            printf("--------------------------\n");
+        }
+        break;
+        //afisarea datelor
+        case 3:
+            if(!mem){
+                system("cls");
+                printf("Nu ati alocat memorie pentru tablou\n");
+            }
+            else if(!complet){
+                    system("cls");
+                    printf("Nu ati introdus datele despre muzeu\n");
+                    printf("Te rugam sa accesezi punctul '1' din meniu apoi punctul '2'\n");
+                    printf("--------------------------\n");
+                    }
+                    else{
+                        afisare_muzeu(arr,n);
+                        printf("--------------------------\n");
+                    }
+        break;
+    //adaugarea la sfirsit
+    case 4:
+        if(!mem){
+            system("cls");
+            printf("Nu ati alocat memorie pentru tablou\n");
+        }
+        else if(!complet){
+                system("cls");
+                printf("Nu ati introdus datele despre muzeu\n");
+                printf("Te rugam sa accesezi punctul '1' din meniu apoi punctul '2'\n");
+                printf("--------------------------\n");
+                }
+                else{
+                    n++;
+                    add_prod(&arr,n);
+                    printf("--------------------------\n");
+                }
+    break;
+    //modificarea
+    case 5:
+        if((complet==1)&&(mem==1)){
+            printf("Ce muzeu doriti sa modificati\n");
+            printf("Scrieti numarul de la 1 la %d:",n);
+            scanf("%d",&t);
+            printf("Numarul muzeului:%d\n",t);
+            printf("--------------------------\n"); 
+            if((n<modific)&&(n<0)){
+                printf("Nu exista structura cu pozitia data");
+                printf("--------------------------\n");
+                }
+                else{
+                    modificare(arr,n);
+                    printf("--------------------------\n");
+                }
+            }
+        else{
+            system("cls");
+            printf("Nu ati alocat memorie pentru tablou\n");
+            printf("Si nu ati introdus datele despre muzeu\n");
+            printf("Te rugam sa accesezi punctul '1' din meniu apoi punctul '2'\n");
+            printf("--------------------------\n");
+        }
+    break;
+    //cautarea
+    case 6:
+        if((complet==1) && (mem==1)){
+            printf("Rezultatul cautarii:\n\n");
+            cautare(arr,n);
+            printf("--------------------------\n");
+        }
+        else{
+            system("cls");
+            printf("Nu ati alocat memorie pentru tablou\n");
+            printf("Si nu ati introdus datele despre muzeu\n");
+            printf("Te rugam sa accesezi punctul '1' din meniu apoi punctul '2'\n");
+            printf("--------------------------\n");
+        }
+    break;
+    //sortarea
+    case 7:
+        if((complet==1)&&(mem==1)){
+            printf("1.Sortarea dupa numarul de exponate\n");
+            printf("2.Sortarea dupa pret\n");
+            printf("Alege optiunea dorita:");
+            scanf("%d",&op);
+            sortare(&arr,n,op);
+            afisare_muzeu(arr,n); 
+            printf("\n\n");
+            printf("--------------------------\n");
+        }
+        else{
+            system("cls");
+            printf("Nu ati alocat memorie pentru tablou\n");
+            printf("Si nu ati introdus datele despre muzeu\n");
+            printf("Te rugam sa accesezi punctul '1' din meniu apoi punctul '2'\n");
+            printf("--------------------------\n");
+        }
+    break;
+    case 8:
+        if((complet==1)&&(mem==1)){
+            printf("Introdu structura pentru eliminare de la 1 la %d:",n);
+            scanf("%d",&index);
+            dell(&arr,n,index);
+            n--;
+            afisare_muzeu(arr,n); 
+            printf("\n\n");
+            printf("--------------------------\n");
+        }
+        else{
+            system("cls");
+            printf("Nu ati alocat memorie pentru tablou\n");
+            printf("Si nu ati introdus datele despre muzeu\n");
+            printf("Te rugam sa accesezi punctul '1' din meniu apoi punctul '2'\n");
+            printf("--------------------------\n");
+        }
+    break;
+    case 9:
+        if((complet==1)||(mem==1)){
+            free(arr);
+            arr = NULL;
+            mem = 0;
+            complet = 0;
+            printf("Memoria a fost eliberata.\n");
+            printf("--------------------------\n"); 
+        }
+        else{
+            printf("Memoria nu a fost alocata. Nu poate fi eliberata.\n\n");
+            printf("--------------------------\n"); 
+        }
+    break;
+    case 0:
+        printf("\nProgramul a fost oprit.");
+    break;
+    default:
+        system("cls");
+        printf("\n\nError Nu avem asa optiune in meniu\n\n");
+        printf("--------------------------\n");
+    }
+}
+while(aleg!=0);
+}
+
+int main(){
+    muzeu* arr;
+    int n;
+    meniu(arr,n);
+}
+        
