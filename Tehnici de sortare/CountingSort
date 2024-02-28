@@ -1,0 +1,127 @@
+//*****Counting Sort  - unsigned int array sort ******
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+void randomArr(int n, unsigned int *arr);
+void outputArr(int n, unsigned int *arr);
+int getMax(int n, unsigned int *arr);
+void countingSort(int n, unsigned int *arr);
+int main()
+{
+    int n = 12;
+    unsigned int arr[n];
+    randomArr(n, arr);
+    outputArr(n, arr);
+    countingSort(n, arr);
+    printf("\n");
+    outputArr(n, arr);
+    return 0;
+}
+void randomArr(int n, unsigned int *arr){
+    srand(time(NULL));
+    for(int i=0; i<n; i++) 
+        *(arr+i)=rand()%1000;
+}
+void outputArr(int n, unsigned int *arr){
+    for(int i=0; i<n; i++)
+        printf("%i  ", *(arr+i));
+}
+int getMax(int n, unsigned int *arr){
+    int max = *arr;
+    for(int i=1; i<n; i++)
+        if (*(arr+i)>max) max = *(arr+i);
+    return max;
+}
+void countingSort(int n, unsigned int *arr){
+    int max = getMax(n, arr);
+    int *count = (int*) calloc (max+1, sizeof(int));
+    for(int i=0; i<n; i++)
+        (*(count+*(arr+i)))++; //count[arr[i]]++;
+    int k=0;
+    for(int i=0; i<=max; i++)
+        while (*(count+i)>0){   //while (count[i]>0){
+            *(arr+k++) = i;     //    arr[k++] = i;
+            (*(count+i))--;     //    count[i]--;
+        }                       //}
+    free(count);
+}
+
+// ******Counting Sort  - Struct Array Sort  ******
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct {
+    char *nume;
+    char *prenume;
+    int nota;
+} stud;
+
+void inputArr(int n, stud *arr);
+void outputArr(int n, stud *arr);
+int getMax(int n, stud *arr);
+void countingSort(int n, stud *arr);
+void freeArray(int n, stud *arr);
+int main()
+{
+    int n = 3;
+    stud arr[n];
+    inputArr(n, arr);
+    outputArr(n, arr);
+    countingSort(n, arr);
+    printf("\nArray-ul sortat\n");
+    outputArr(n, arr);
+    freeArray(n, arr);
+    return 0;
+}
+void inputArr(int n, stud *arr){
+    for(int i=0; i<n; i++){
+        arr[i].nume = (char*)malloc(10 * sizeof(char));
+        arr[i].prenume = (char*)malloc(10 * sizeof(char));
+        scanf("%s", arr[i].nume);
+        scanf("%s", arr[i].prenume);
+        scanf("%i", &arr[i].nota);
+    } 
+}
+void outputArr(int n, stud *arr){
+    for(int i=0; i<n; i++) {
+        printf(" %s", arr[i].nume);
+        printf(" %s", arr[i].prenume);
+        printf(" %i", arr[i].nota);
+    }
+}
+int getMax(int n, stud *arr){
+    int max = arr[0].nota;
+    for(int i=1; i<n; i++)
+        if (arr[i].nota>max) max = arr[i].nota;
+    return max;
+}
+void countingSort(int n, stud *arr){
+    int max = getMax(n, arr);
+    int *count = (int*) calloc (max + 1, sizeof(int));
+    for(int i=0; i<n; i++)
+        count[arr[i].nota]++;
+    int k=0;
+    stud *output = (stud*)malloc(n * sizeof(stud));
+    for(int i=0; i<=max; i++)
+        while (count[i]>0){
+            int j=0;
+            while(count[i]!=0){
+                if(arr[j].nota == i) {
+                    output[k++] = arr[j]; 
+                    count[i]--;
+                }
+                j++;
+            }
+        } 
+    for (int i=0; i<n; i++)
+        arr[i] = output[i];
+    free(count);
+    free(output);
+}
+void freeArray(int n, stud *arr){
+    for(int i=0; i<n; i++){
+        free(arr[i].nume);
+        free(arr[i].prenume);
+    }
+}
+
