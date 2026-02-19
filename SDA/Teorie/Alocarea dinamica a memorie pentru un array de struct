@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct {
+    char denumire[100];
+    int nr_studenti;
+} Universitate;
+
+Universitate* aloca_universitati(int nr_universitati) {
+    Universitate* arr = (Universitate*)malloc(nr_universitati * sizeof(Universitate));
+    
+    if (arr == NULL) {
+        printf("Alocarea memoriei a esuat!\n");
+        exit(1); 
+    }
+
+    return arr;
+}
+
+void aloca_universitati_ptr(Universitate **arr, int nr_universitati) {
+    *arr = (Universitate*)malloc(nr_universitati * sizeof(Universitate));
+    
+    if (*arr == NULL) {
+        printf("Alocarea memoriei a esuat!\n");
+        exit(1); 
+    }
+}
+
+int main() {
+    int nr_universitati;
+    
+    printf("Introduceti numarul de universitati: ");
+    scanf("%d", &nr_universitati);
+
+    Universitate* arr1 = aloca_universitati(nr_universitati);
+    
+    Universitate* arr2 = NULL;
+    aloca_universitati_ptr(&arr2, nr_universitati);
+    
+    for (int i = 0; i < nr_universitati; i++) {
+        //scanf("%s", arr1[i].denumire);
+        //scanf("%d", arr1[i].nr_studenti;
+        //scanf("%s", (arr1+i)->denumire);
+        //scanf("%d", &((arr1+i)->nr_studenti));
+    
+        scanf("%s", (*(arr1+i)).denumire);
+        scanf("%d", &((*(arr1+i)).nr_studenti));
+        
+    }
+
+    for (int i = 0; i < nr_universitati; i++) {
+        printf("Universitatea %d: %s, Nr. studenti: %d\n", i + 1, arr1[i].denumire, arr1[i].nr_studenti);
+        //printf("Universitatea %d: %s, Nr. studenti: %d\n", i + 1, (arr1 + i)->denumire, (arr1 + i)->nr_studenti);
+    }   //printf("Universitatea %d: %s, Nr. studenti: %d\n", i + 1, (*(arr1 + i)).denumire, (*(arr1 + i)).nr_studenti);
+
+
+    free(arr1);
+    free(arr2);
+
+    return 0;
+}
